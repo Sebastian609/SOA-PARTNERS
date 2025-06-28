@@ -75,12 +75,15 @@ export class PartnerController {
       const partner = await this.partnerService.getPartnerByToken(token);
       
       if (!partner) {
-        return res.status(404).json({ message: "Partner not found or inactive" });
+        return res.status(404).json({ message: "Partner not found or inactive", success:false  });
       }
 
-      res.status(200).json(partner);
+      res.status(200).json({
+        partner,
+        success: true
+      });
     } catch (error) {
-      res.status(400).json({ message: error.message });
+      res.status(400).json({ message: error.message, success:false });
     }
   }
 
