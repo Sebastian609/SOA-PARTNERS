@@ -1,6 +1,7 @@
 // src/database/data-source.ts
 import { DataSource } from "typeorm";
 import { config } from 'dotenv';
+import { Partner } from "../entity/partners.entity";
 
 config(); // Cargar variables del archivo .env
 
@@ -14,7 +15,7 @@ export const AppDataSource = new DataSource({
   database: process.env.DB_NAME,
   synchronize: false,
   logging: true,
-  entities: ["src/infrastructure/entity/**/*.ts"],
+  entities: [Partner],
   migrations: [],
   subscribers: [],
 });
